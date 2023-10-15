@@ -19,7 +19,8 @@ public class SmokeTest {
         rqData.setPassword("cityslicka");
         LoginResponseModel response = step("Send login request", () -> given(loginRequestSpec)
                 .filter(new AllureRestAssured())
-                .body(rqData).when()
+                .body(rqData)
+                .when()
                 .post("/login")
                 .then()
                 .extract().as(LoginResponseModel.class));
@@ -49,6 +50,7 @@ public class SmokeTest {
         rqData.setPassword("pistol");
         RegisterSuccessModel response = step("Send login request", () -> given(loginRequestSpec)
                 .body(rqData)
+                .when()
                 .post("/register")
                 .then()
                 .extract().as(RegisterSuccessModel.class));
@@ -64,6 +66,7 @@ public class SmokeTest {
         LoginResponseErrorModel response = step("Send login request", () -> given(loginRequestSpec)
                 .log().all().when()
                 .body(rqData)
+                .when()
                 .post("/register")
                 .then()
                 .extract().as(LoginResponseErrorModel.class));
